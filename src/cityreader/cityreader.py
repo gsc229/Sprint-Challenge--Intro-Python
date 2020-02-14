@@ -25,21 +25,23 @@ class City:
 cities = []
 
 
-def cityreader(L):
+def cityreader(cities=[]):
     # TODO Implement the functionality to read from the 'cities.csv' file
     # For each city record, create a new City instance and add it to the
     # `cities` list
-    global cities
+
     with open('cities.csv') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
-        cities = [City(row[0], row[3], row[4]) for row in readCSV]
+        """ cities = [City(row[0], row[3], row[4]) for row in readCSV] """
+        for row in readCSV:
+            cities.append(City(row[0], row[3], row[4]))
         return cities
 
 
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-
+print("CITIES: ", cities)
 for c in cities:
     print(f"{c.name}, {c.lat}, {c.lon}")
 
