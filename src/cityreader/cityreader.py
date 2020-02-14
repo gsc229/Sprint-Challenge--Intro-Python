@@ -34,17 +34,18 @@ def cityreader(cities=[]):
         readCSV = csv.reader(csvfile, delimiter=',')
         """ cities = [City(row[0], row[3], row[4]) for row in readCSV] """
         for row in readCSV:
-            cities.append(City(row[0], row[3], row[4]))
+            cities.append(City(row[0], (row[3]), (row[4])))
+            print(row[3])
         return cities
 
 
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-print("CITIES: ", cities)
+
 for c in cities:
     print(f"{c.name}, {c.lat}, {c.lon}")
-
+    print(type(c.lat))
 # STRETCH GOAL!
 #
 # Allow the user to input two points, each specified by latitude and longitude.
