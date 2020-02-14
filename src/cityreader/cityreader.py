@@ -6,8 +6,8 @@ import csv
 class City:
     def __init__(self, name, lat, lon):
         self.name = name
-        self.lat = lat
-        self.lon = lon
+        self.lat = float(lat)
+        self.lon = float(lon)
 
 
 # We have a collection of US cities with population over 750,000 stored in the
@@ -33,6 +33,7 @@ def cityreader(cities=[]):
     with open('cities.csv') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
         """ cities = [City(row[0], row[3], row[4]) for row in readCSV] """
+        next(readCSV, None)
         for row in readCSV:
             cities.append(City(row[0], (row[3]), (row[4])))
             print(row[3])
@@ -45,7 +46,7 @@ cityreader(cities)
 
 for c in cities:
     print(f"{c.name}, {c.lat}, {c.lon}")
-    print(type(c.lat))
+
 # STRETCH GOAL!
 #
 # Allow the user to input two points, each specified by latitude and longitude.
